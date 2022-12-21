@@ -1,3 +1,4 @@
+#!/bin/bash
 
 docker stop logging-batch-go-container
 docker rmi logging-batch-go-image

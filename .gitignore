@@ -2,3 +2,5 @@
 .idea
 log-file-go
 go.sum
+
+go-build
