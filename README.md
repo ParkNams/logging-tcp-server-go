@@ -2,7 +2,7 @@
 
 ## Log 저장 위치
 
-`HOME/logs`
+`$HOME/logs`
 
 ## GOLANG 세팅
 ```
