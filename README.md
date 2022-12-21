@@ -42,10 +42,28 @@ PROGRAM_EXIT // 프로그램 종료
 ## 서버 데이터 전달 포맷
 
 ```json
+// sync log
 {
-    "protocol": "" // ... protocol,
+    "protocol": "", // ... protocol,
     "data": {
-        // ... some object
+        "alloc": 0, // 현재 힙 메모리 사용량
+        "totalAlloc": 0, // 총 힙 메모리 사용량
+        "sys": 0, // os 자원 사용량
+        "numGC": 0, // GC 실행 횟수
+        "runnigTime": 0, // 걸린 시간
+    }
+}
+
+// api log
+{
+    "protocol": "", // ... protocol,
+    "data": {
+        "body": "", // request body
+        "header": "", // request header
+        "url": "", // api url
+        "ip": "", // client ip
+        "serverType": "", // backend 타입 admin or user
+        "error": "", // api 발생 에러
     }
 }
 ```
