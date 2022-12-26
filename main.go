@@ -29,6 +29,7 @@ func main() {
 			util.RemoveTrashData()
 			time.Sleep(time.Second * 10)
 		}
+		log.Println("remove trash data end")
 	}()
 
 	for !END_FLAG {

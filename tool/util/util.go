@@ -15,13 +15,12 @@ func RemoveTrashData() {
 
 	if len(profFile.IdleProfFiles) == 0 {
 		log.Println("profile data empty")
-		return;
-	}
-
-	for key,data := range profFile.IdleProfFiles {
-		if len(data) > 0 && now - data[0].CreatedTime > 6000 {
-			profFile.IdleProfFiles[key] = nil
-			log.Println("trash data removed")
+	}else {
+		for key,data := range profFile.IdleProfFiles {
+			if len(data) > 0 && now - data[0].CreatedTime > 6000 {
+				delete(profFile.IdleProfFiles,key)
+				log.Println("trash data removed")
+			}
 		}
-	}	
+	}
 }

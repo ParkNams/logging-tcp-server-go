@@ -58,6 +58,6 @@ func (profData ProfFileData) Execute() {
 		log.Println("write prof")
 		file.WriteFile(fileName + string(profData.ProfType),
 		makeFile, 0777, commonConstant.FILE_EXTENSION.PROF)
-		IdleProfFiles[profData.Uuid] = nil
+		delete(IdleProfFiles, profData.Uuid)
 	}
 }
