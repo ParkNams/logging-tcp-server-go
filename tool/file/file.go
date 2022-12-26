@@ -33,7 +33,7 @@ func WriteCSVFile(fileName string, logText []string, fileAuth int) {
 
 	file, err := os.OpenFile(
 		fileName+commonConstant.FILE_EXTENSION.CSV,
-		os.O_CREATE|os.O_RDWR|os.O_APPEND,
+		commonConstant.FILE_FLAGS.CRW_APPEND,
 		os.FileMode(fileAuth))
 
 	common.CheckErr(err)
@@ -48,17 +48,17 @@ func WriteCSVFile(fileName string, logText []string, fileAuth int) {
 /*
 	text 파일 쓰기
 */
-func WriteTextFile(fileName string, fileByte []byte, fileAuth int) {
+func WriteFile(fileName string, fileByte []byte, fileAuth int, extension string) {
 	fileNameSpit := strings.Split(fileName, "/")
-	filePath := strings.Join(fileNameSpit[0:len(fileNameSpit)-1], "/")
+	filePath := strings.Join(fileNameSpit[0:len(fileNameSpit)-1], "/") 
 	log.Println(filePath)
 	err := os.MkdirAll(filePath, os.FileMode(fileAuth))
 
 	common.CheckErr(err)
 
 	file, err := os.OpenFile(
-		fileName+commonConstant.FILE_EXTENSION.TEXT,
-		os.O_CREATE|os.O_RDWR|os.O_APPEND,
+		fileName+extension,
+		commonConstant.FILE_FLAGS.CRW_TRUNC,
 		os.FileMode(fileAuth))
 
 	common.CheckErr(err)

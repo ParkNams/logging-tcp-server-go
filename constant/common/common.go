@@ -11,6 +11,7 @@ type Protocol struct {
 	TestLog string
 	SyncLog string
 	ApiLog string
+	ProfFile string
 
 	ProgramExit string
 }
@@ -18,6 +19,13 @@ type Protocol struct {
 type FileExtension struct {
 	TEXT string
 	CSV  string
+	PROF string
+}
+
+type FileFlags struct {
+	CRW_APPEND int
+	CRW_TRUNC int
+	C_SYNC int
 }
 
 var (
@@ -36,16 +44,18 @@ var (
 		TestLog: "TEST_LOG",
 		SyncLog: "SYNC_LOG",
 		ApiLog: "API_LOG",
-		
+		ProfFile: "PROF_FILE",
+
 		// system
 		ProgramExit: "PROGRAM_EXIT",
 	}
 
 	// 로깅 관련 프로토콜
-	LOGGING_PROTOCOLS = [3]string{
+	LOGGING_PROTOCOLS = [4]string{
 		"TEST_LOG",
 		"SYNC_LOG",
 		"API_LOG",
+		"PROF_FILE",
 	}
 
 	// 시스템 설정 관련 프로토콜
@@ -57,6 +67,14 @@ var (
 	FILE_EXTENSION = FileExtension{
 		CSV:  ".csv",
 		TEXT: ".txt",
+		PROF: ".prof",
+	}
+
+	// 파일 플래그
+	FILE_FLAGS = FileFlags{
+		CRW_APPEND: os.O_CREATE|os.O_RDWR|os.O_APPEND,
+		CRW_TRUNC: os.O_CREATE|os.O_RDWR|os.O_TRUNC,
+		C_SYNC: os.O_CREATE|os.O_SYNC,
 	}
 )
 

@@ -30,6 +30,7 @@ func Controller(l net.Listener) bool {
 			From(commonConstant.LOGGING_PROTOCOLS).
 			IndexOf(objectData.Protocol).Result() >= 0:
 			logging.Controller(objectData)
+
 		case gubrak.
 			From(commonConstant.SYSTEM_PROTOCOLS).
 			IndexOf(objectData.Protocol).
@@ -45,6 +46,6 @@ func Controller(l net.Listener) bool {
 			log.Printf("not accepted tcp connect [recived buffer]:[%d]\n", n)
 		}
 	}
-	defer conn.Close()
+	conn.Close()
 	return endFlag
 }

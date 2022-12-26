@@ -28,7 +28,7 @@ func ErrorLogging(err error) bool {
 /*
 	전달받은 jsonData 를 struct 변수에 저장
 */
-func SendDataJsonToStruct[V comparable](jsonData interface{}, structData *V) {
+func SendDataJsonToStruct[V interface{}](jsonData interface{}, structData *V) {
 	dataByte, err := json.Marshal(jsonData)
 	CheckErr(err)
 	err = json.Unmarshal(dataByte, structData)

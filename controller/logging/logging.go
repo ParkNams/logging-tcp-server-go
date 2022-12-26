@@ -5,6 +5,7 @@ import (
 	"logFile.com/log-file-go/controller/structure"
 	"logFile.com/log-file-go/handler"
 	apilog "logFile.com/log-file-go/handler/apiLog"
+	"logFile.com/log-file-go/handler/profFile"
 	synclog "logFile.com/log-file-go/handler/syncLog"
 	"logFile.com/log-file-go/handler/testLog"
 	"logFile.com/log-file-go/tool/common"
@@ -25,9 +26,13 @@ func Controller(objectData structure.ClientData) {
 		var apiLogData apilog.ApiLogData
 		common.SendDataJsonToStruct(objectData.Data, &apiLogData)
 		handler = &apiLogData
+	case commonConstant.PROTOCOL.ProfFile:
+		var profData profFile.ProfFileData
+		common.SendDataJsonToStruct(objectData.Data, &profData)
+		handler = &profData
 	}
 
 	if handler != nil {
-		go handler.Execute()
+		handler.Execute()
 	}
 }
