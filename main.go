@@ -16,7 +16,6 @@ var (
 )
 
 func main() {
-
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
 	l := tcp.GetListener(common.METHOD, common.GetPort())
@@ -27,7 +26,7 @@ func main() {
 	go func() {
 		for !END_FLAG {
 			util.RemoveTrashData()
-			time.Sleep(time.Second * 10)
+			time.Sleep(time.Second * 60)
 		}
 		log.Println("remove trash data end")
 	}()
