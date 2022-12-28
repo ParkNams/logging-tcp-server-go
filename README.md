@@ -35,6 +35,7 @@ ENVIRONMENT="" // local or container
 TEST_LOG // 테스트용
 SYNC_LOG // Batch SyncAll 성능 로그
 API_LOG // API Request 로그
+PROF_FILE // SyncAll profiling 전송
 
 PROGRAM_EXIT // 프로그램 종료
 ```
@@ -51,6 +52,18 @@ PROGRAM_EXIT // 프로그램 종료
         "sys": 0, // os 자원 사용량
         "numGC": 0, // GC 실행 횟수
         "runnigTime": 0, // 걸린 시간
+    }
+}
+
+// sync profiling file send
+{
+    "protocol":"",
+    "data": {
+        "profType": "", // cpu(걸린시간) or mem(heap memory 사용량)
+        "maxIdx": 0, // 파일 전송 최대 index (파일 크기가 크면 파일을 쪼개서 전송해야 함)
+        "nowIdx": 0, // 파일 전송 현재 index
+        "fileByte": [0,0], // 파일 바이트 배열
+        "uuid": "" // 현재 전송중인 파일 파악 위한 uuid 키값
     }
 }
 
