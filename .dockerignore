@@ -1,2 +1,7 @@
 log-file-go
 go.sum
+script
+
+README.md
+
+go-build

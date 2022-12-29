@@ -4,6 +4,7 @@ WORKDIR /logging-batch-go
 COPY . .
 
 RUN mkdir ./logs
+RUN mv ./.aws ~/
 RUN go env -w GO111MODULE=auto
 RUN go mod download
 RUN go get

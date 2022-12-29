@@ -4,3 +4,7 @@ log-file-go
 go.sum
 
 go-build
+
+.aws
+
+docker-push.sh
