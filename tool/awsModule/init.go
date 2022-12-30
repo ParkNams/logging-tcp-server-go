@@ -12,7 +12,7 @@ var (
 	_           = godotenv.Load()
 	cfg, cfgErr = config.LoadDefaultConfig(
 		context.TODO(),
-		config.WithRegion("us-west-2"),
+		config.WithRegion("ap-southeast-2"),
 		config.WithSharedConfigProfile(
 			os.Getenv("AWS_CREDENTIAL_PROFILE")))
 )
