@@ -34,5 +34,5 @@ func (profFileOpenData ProfFileOpenData) Execute() {
 
 	file.WriteFile(fileName,
 		bodyByte, 0777, commonConstant.FILE_EXTENSION.PROF)
-	shellModule.OpenProfHttp(profFileOpenData.OpenType)
+	shellModule.OpenProfHttp(profFileOpenData.OpenType, "6061")
 }
