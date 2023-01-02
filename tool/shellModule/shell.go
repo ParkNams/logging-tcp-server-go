@@ -1,6 +1,7 @@
 package shellModule
 
 import (
+	"log"
 	"os/exec"
 
 	"github.com/joho/godotenv"
@@ -41,6 +42,8 @@ func OpenMemProfHttp() error {
 	cmdPprof := exec.Command("go", "tool", "pprof", "-http", ":6062", "/logging-batch-go/logs/mem/openFile.prof")
 
 	// cmd := exec.Command("sh", "/logging-batch-go/script/open-mem-prof.sh")
+
+	log.Println(cmdKilPort.Dir)
 
 	runErr := cmdKilPort.Run()
 
