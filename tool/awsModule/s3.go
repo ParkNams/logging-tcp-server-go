@@ -36,7 +36,7 @@ func UploadS3(bucket string, loc string, body string, contentType string) (*mana
 	return result, nil
 }
 
-func GetObjectS3(bucket string, loc string) (*s3.ListObjectsV2Output, error) {
+func GetObjectListS3(bucket string, loc string) (*s3.ListObjectsV2Output, error) {
 	if common.ErrorLogging(cfgErr) {
 		return nil, cfgErr
 	}
@@ -46,6 +46,22 @@ func GetObjectS3(bucket string, loc string) (*s3.ListObjectsV2Output, error) {
 		Prefix:    aws.String(loc + "/"),
 	}
 	output, err := s3Client.ListObjectsV2(context.TODO(), input)
+	if common.ErrorLogging(err) {
+		return nil, err
+	}
+	return output, nil
+}
+
+func GetObjectS3(bucket string, loc string) (*s3.GetObjectOutput, error) {
+	if common.ErrorLogging(cfgErr) {
+		return nil, cfgErr
+	}
+	input := &s3.GetObjectInput{
+		Bucket: aws.String(bucket),
+		Key:    aws.String(loc),
+	}
+	output, err := s3Client.GetObject(context.TODO(), input)
+
 	if common.ErrorLogging(err) {
 		return nil, err
 	}

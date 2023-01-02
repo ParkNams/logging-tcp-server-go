@@ -10,7 +10,7 @@ RUN go mod download
 RUN go get
 RUN go build logFile.com/log-file-go
 
-EXPOSE 8000
+EXPOSE 8000 6061
 
 # CMD [ "go" , "run" , "main.go" ]
 CMD [ "./log-file-go" ]

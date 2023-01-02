@@ -8,10 +8,13 @@ import (
 
 type Protocol struct {
 	// logging
-	TestLog string
-	SyncLog string
-	ApiLog string
+	TestLog  string
+	SyncLog  string
+	ApiLog   string
 	ProfFile string
+
+	//ui
+	ProfHttpOpen string
 
 	ProgramExit string
 }
@@ -24,8 +27,8 @@ type FileExtension struct {
 
 type FileFlags struct {
 	CRW_APPEND int
-	CRW_TRUNC int
-	C_SYNC int
+	CRW_TRUNC  int
+	C_SYNC     int
 }
 
 var (
@@ -41,26 +44,33 @@ var (
 	// 프로그램 프로토콜
 	PROTOCOL = Protocol{
 		// logging
-		TestLog: "TEST_LOG",
-		SyncLog: "SYNC_LOG",
-		ApiLog: "API_LOG",
+		TestLog:  "TEST_LOG",
+		SyncLog:  "SYNC_LOG",
+		ApiLog:   "API_LOG",
 		ProfFile: "PROF_FILE",
+
+		//ui
+		ProfHttpOpen: "PROF_HTTP_OPEN",
 
 		// system
 		ProgramExit: "PROGRAM_EXIT",
 	}
 
 	// 로깅 관련 프로토콜
-	LOGGING_PROTOCOLS = [4]string{
-		"TEST_LOG",
-		"SYNC_LOG",
-		"API_LOG",
-		"PROF_FILE",
+	LOGGING_PROTOCOLS = [3]string{
+		PROTOCOL.SyncLog,
+		PROTOCOL.ApiLog,
+		PROTOCOL.ProfFile,
+	}
+
+	// UI 오픈 프로토콜
+	UI_PROTOCOLS = [1]string{
+		PROTOCOL.ProfHttpOpen,
 	}
 
 	// 시스템 설정 관련 프로토콜
 	SYSTEM_PROTOCOLS = [1]string{
-		"PROGRAM_EXIT",
+		PROTOCOL.ProgramExit,
 	}
 
 	// 파일 확장자
@@ -72,9 +82,9 @@ var (
 
 	// 파일 플래그
 	FILE_FLAGS = FileFlags{
-		CRW_APPEND: os.O_CREATE|os.O_RDWR|os.O_APPEND,
-		CRW_TRUNC: os.O_CREATE|os.O_RDWR|os.O_TRUNC,
-		C_SYNC: os.O_CREATE|os.O_SYNC,
+		CRW_APPEND: os.O_CREATE | os.O_RDWR | os.O_APPEND,
+		CRW_TRUNC:  os.O_CREATE | os.O_RDWR | os.O_TRUNC,
+		C_SYNC:     os.O_CREATE | os.O_SYNC,
 	}
 )
 

@@ -35,7 +35,7 @@ func Controller(l net.Listener) bool {
 	if err != nil {
 		log.Println(err)
 		conn.Close()
-		return endFlag;
+		return endFlag
 	}
 
 	switch {
@@ -43,7 +43,9 @@ func Controller(l net.Listener) bool {
 		From(commonConstant.LOGGING_PROTOCOLS).
 		IndexOf(objectData.Protocol).Result() >= 0:
 		logging.Controller(objectData)
-
+	case gubrak.
+		From(commonConstant.UI_PROTOCOLS).
+		IndexOf(objectData.Protocol).Result() >= 0:
 	case gubrak.
 		From(commonConstant.SYSTEM_PROTOCOLS).
 		IndexOf(objectData.Protocol).
