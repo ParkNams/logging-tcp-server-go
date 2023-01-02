@@ -10,7 +10,6 @@ import (
 	"logFile.com/log-file-go/tool/awsModule"
 	"logFile.com/log-file-go/tool/common"
 	"logFile.com/log-file-go/tool/file"
-	"logFile.com/log-file-go/tool/shellModule"
 )
 
 var (
@@ -34,5 +33,5 @@ func (profFileOpenData ProfFileOpenData) Execute() {
 
 	file.WriteFile(fileName,
 		bodyByte, 0777, commonConstant.FILE_EXTENSION.PROF)
-	shellModule.OpenProfHttp(profFileOpenData.OpenType, "6061")
+	// shellModule.OpenProfHttp(profFileOpenData.OpenType, "6061")
 }

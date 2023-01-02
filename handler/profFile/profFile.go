@@ -82,9 +82,9 @@ func (profData ProfFileData) Execute() {
 
 		var shellError error
 		if profData.ProfType == "cpu" {
-			shellError = shellModule.OpenProfHttp(commonConstant.FILE_EXTENSION.PROF, "6061")
+			shellError = shellModule.OpenCpuProfHttp()
 		} else {
-			shellError = shellModule.OpenProfHttp(commonConstant.FILE_EXTENSION.PROF, "6062")
+			shellError = shellModule.OpenMemProfHttp()
 		}
 		common.ErrorLogging(shellError)
 	}
