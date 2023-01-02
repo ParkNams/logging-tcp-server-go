@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "/home/ec2-user/logs/mem"
+cd "/logging-batch-go/logs/mem"
 
 pwd
 

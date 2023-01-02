@@ -10,9 +10,9 @@ RUN go mod download
 RUN go get
 RUN go build logFile.com/log-file-go
 
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+# RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
-RUN sudo yum install google-chrome-stable_current_x86_64.rpm
+# RUN sudo yum install google-chrome-stable_current_x86_64.rpm
 
 EXPOSE 8000 6061
 

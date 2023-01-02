@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "/home/ec2-user/logs/cpu"
+cd "/logging-batch-go/logs/cpu"
 
 pwd
 
