@@ -8,4 +8,4 @@ echo ":6062" "openFile.prof"
 
 fuser -k -n tcp 6062
 
-go tool pprof -http ":6062" "openFile.prof"
+go tool pprof -http :6062 openFile.prof
