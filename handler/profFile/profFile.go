@@ -7,10 +7,13 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/novalagung/gubrak/v2"
+	commonConstant "logFile.com/log-file-go/constant/common"
 	"logFile.com/log-file-go/constant/localCache"
 	"logFile.com/log-file-go/structures"
 	"logFile.com/log-file-go/tool/awsModule"
 	"logFile.com/log-file-go/tool/common"
+	"logFile.com/log-file-go/tool/file"
+	"logFile.com/log-file-go/tool/shellModule"
 )
 
 // var (
@@ -68,5 +71,21 @@ func (profData ProfFileData) Execute() {
 				".prof", string(makeFile), "multipart/formed-data")
 		log.Printf("%v , %v\n", result, err)
 		delete(localCache.IdleProfFiles, profData.Uuid)
+
+		file.WriteFile(
+			commonConstant.GetLogDirByEnv(os.Getenv("ENVIRONMENT"))+"/"+
+				profData.ProfType+"/"+
+				"openHttp",
+			makeFile,
+			755,
+			commonConstant.FILE_EXTENSION.PROF)
+
+		var shellError error
+		if profData.ProfType == "cpu" {
+			shellError = shellModule.OpenProfHttp(commonConstant.FILE_EXTENSION.PROF, "6061")
+		} else {
+			shellError = shellModule.OpenProfHttp(commonConstant.FILE_EXTENSION.PROF, "6062")
+		}
+		common.ErrorLogging(shellError)
 	}
 }

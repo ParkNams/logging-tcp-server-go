@@ -13,11 +13,11 @@ var (
 	_ = godotenv.Load()
 )
 
-func OpenProfHttp(openType string) error {
+func OpenProfHttp(openType string, port string) error {
 	filePath := commonConstant.GetLogDirByEnv(os.Getenv("ENVIRONMENT")) + "/" +
 		openType
 
-	cmd := exec.Command("sh", "./script/open-prof.sh", filePath, "openHttp.prof")
+	cmd := exec.Command("sh", "./script/open-prof.sh", filePath, "openHttp.prof", port)
 
 	runErr := cmd.Run()
 
