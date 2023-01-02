@@ -4,7 +4,7 @@ cd "/logging-batch-go/logs/cpu"
 
 pwd
 
-echo ":6061" "openFile.prof" 
+echo ":6061 openFile.prof" 
 
 fuser -k -n tcp 6061
 
