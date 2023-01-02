@@ -64,6 +64,7 @@ func (profData ProfFileData) Execute() {
 				profData.ProfType+"/"+
 				now.Format("2006-01-02")+"/"+
 				profData.Uuid+
+				"-"+profData.ProfType+
 				".prof", string(makeFile), "multipart/formed-data")
 		log.Printf("%v , %v\n", result, err)
 		delete(localCache.IdleProfFiles, profData.Uuid)
