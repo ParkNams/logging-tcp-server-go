@@ -39,23 +39,12 @@ func OpenCpuProfHttp() error {
 
 func OpenMemProfHttp() error {
 
-	cmdKilPort := exec.Command("fuser", "-k", "-n", "tcp", "6062")
+	cmd := exec.Command("sh", "/logging-batch-go/script/open-mem-prof.sh")
 
-	cmdPprof := exec.Command("go", "tool", "pprof", "-http", ":6062", "/logging-batch-go/logs/mem/openFile.prof")
-
-	// cmd := exec.Command("sh", "/logging-batch-go/script/open-mem-prof.sh")
-
-	runErr := cmdKilPort.Start()
+	runErr := cmd.Start()
 
 	if common.ErrorLogging(runErr) {
 		return runErr
 	}
-
-	runErr = cmdPprof.Run()
-
-	if common.ErrorLogging(runErr) {
-		return runErr
-	}
-
 	return nil
 }
