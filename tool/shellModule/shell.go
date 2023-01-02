@@ -48,7 +48,7 @@ func OpenMemProfHttp() error {
 	runErr := cmdKilPort.Run()
 
 	if common.ErrorLogging(runErr) {
-		return runErr
+		// return runErr
 	}
 
 	runErr = cmdPprof.Run()
