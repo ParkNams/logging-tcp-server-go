@@ -20,7 +20,7 @@ func OpenCpuProfHttp() error {
 
 	cmd := exec.Command("sh", "/logging-batch-go/script/open-cpu-prof.sh")
 
-	runErr := cmd.Start()
+	runErr := cmd.Run()
 
 	if common.ErrorLogging(runErr) {
 		return runErr
@@ -41,7 +41,7 @@ func OpenMemProfHttp() error {
 
 	cmd := exec.Command("sh", "/logging-batch-go/script/open-mem-prof.sh")
 
-	runErr := cmd.Start()
+	runErr := cmd.Run()
 
 	if common.ErrorLogging(runErr) {
 		return runErr
