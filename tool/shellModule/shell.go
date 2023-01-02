@@ -12,7 +12,7 @@ var (
 )
 
 func OpenCpuProfHttp() error {
-	cmd := exec.Command("sh", "./script/open-cpu-prof.sh")
+	cmd := exec.Command("sh", "/logging-batch-go/script/open-cpu-prof.sh")
 
 	runErr := cmd.Run()
 
@@ -23,7 +23,7 @@ func OpenCpuProfHttp() error {
 }
 
 func OpenMemProfHttp() error {
-	cmd := exec.Command("sh", "./script/open-mem-prof.sh")
+	cmd := exec.Command("sh", "/logging-batch-go/script/open-mem-prof.sh")
 
 	runErr := cmd.Run()
 
