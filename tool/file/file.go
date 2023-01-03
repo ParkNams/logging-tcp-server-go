@@ -68,13 +68,13 @@ func WriteFile(fileName string, fileByte []byte, fileAuth int, extension string)
 	file.Write(fileByte)
 }
 
-func RemoveFile(fileName string) {
-	err := os.Remove(fileName)
+func RemoveFile(fileName string, extension string) {
+	err := os.Remove(fileName + extension)
 	common.ErrorLogging(err)
 }
 
-func GetFile(fileName string) []byte {
-	file, err := os.ReadFile(fileName)
+func GetFile(fileName string, extension string) []byte {
+	file, err := os.ReadFile(fileName + extension)
 	if common.ErrorLogging(err) {
 		return nil
 	}

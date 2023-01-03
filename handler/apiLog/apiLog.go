@@ -44,7 +44,7 @@ func (apiLogData *ApiLogData) Execute() {
 		apiLogData.ServerType,
 	}, 0777)
 
-	fileBody := file.GetFile(filName)
+	fileBody := file.GetFile(filName, commonConstant.FILE_EXTENSION.CSV)
 
 	if fileBody != nil {
 		awsModule.UploadS3(
@@ -53,6 +53,6 @@ func (apiLogData *ApiLogData) Execute() {
 			string(fileBody),
 			commonConstant.FILE_EXTENSION.CSV,
 		)
-		file.RemoveFile(filName)
+		file.RemoveFile(filName, commonConstant.FILE_EXTENSION.CSV)
 	}
 }
