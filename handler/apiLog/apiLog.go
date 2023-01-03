@@ -1,6 +1,7 @@
 package apilog
 
 import (
+	"log"
 	"os"
 	"time"
 
@@ -47,6 +48,7 @@ func (apiLogData *ApiLogData) Execute() {
 	fileBody := file.GetFile(filName, commonConstant.FILE_EXTENSION.CSV)
 
 	if fileBody != nil {
+		log.Println("s3 upload api logging")
 		awsModule.UploadS3(
 			os.Getenv("LOGGING_BUCKET"),
 			"/logging/api/"+now.Format("2006-01-02T15:04:05")+
