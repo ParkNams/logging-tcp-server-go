@@ -49,9 +49,10 @@ func (apiLogData *ApiLogData) Execute() {
 	if fileBody != nil {
 		awsModule.UploadS3(
 			os.Getenv("LOGGING_BUCKET"),
-			"/logging/api/"+now.Format("2006-01-02T15:04:05"),
+			"/logging/api/"+now.Format("2006-01-02T15:04:05")+
+				commonConstant.FILE_EXTENSION.CSV,
 			string(fileBody),
-			commonConstant.FILE_EXTENSION.CSV,
+			"multipart/formed-data",
 		)
 		// file.RemoveFile(filName, commonConstant.FILE_EXTENSION.CSV)
 	}
