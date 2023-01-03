@@ -7,13 +7,10 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/novalagung/gubrak/v2"
-	commonConstant "logFile.com/log-file-go/constant/common"
 	"logFile.com/log-file-go/constant/localCache"
 	"logFile.com/log-file-go/structures"
 	"logFile.com/log-file-go/tool/awsModule"
 	"logFile.com/log-file-go/tool/common"
-	"logFile.com/log-file-go/tool/file"
-	"logFile.com/log-file-go/tool/shellModule"
 )
 
 // var (
@@ -58,8 +55,6 @@ func (profData ProfFileData) Execute() {
 		})
 
 		log.Println("write prof")
-		// file.WriteFile(fileName + string(profData.ProfType),
-		// makeFile, 0777, commonConstant.FILE_EXTENSION.PROF)
 
 		result, err := awsModule.UploadS3(
 			os.Getenv("LOGGING_BUCKET"),
@@ -72,20 +67,20 @@ func (profData ProfFileData) Execute() {
 		log.Printf("%v , %v\n", result, err)
 		delete(localCache.IdleProfFiles, profData.Uuid)
 
-		file.WriteFile(
-			commonConstant.GetLogDirByEnv(os.Getenv("ENVIRONMENT"))+"/"+
-				profData.ProfType+"/"+
-				"openHttp",
-			makeFile,
-			755,
-			commonConstant.FILE_EXTENSION.PROF)
+		// file.WriteFile(
+		// 	commonConstant.GetLogDirByEnv(os.Getenv("ENVIRONMENT"))+"/"+
+		// 		profData.ProfType+"/"+
+		// 		"openHttp",
+		// 	makeFile,
+		// 	755,
+		// 	commonConstant.FILE_EXTENSION.PROF)
 
-		var shellError error
-		if profData.ProfType == "cpu" {
-			shellError = shellModule.OpenCpuProfHttp()
-		} else {
-			shellError = shellModule.OpenMemProfHttp()
-		}
-		common.ErrorLogging(shellError)
+		// var shellError error
+		// if profData.ProfType == "cpu" {
+		// 	shellError = shellModule.OpenCpuProfHttp()
+		// } else {
+		// 	shellError = shellModule.OpenMemProfHttp()
+		// }
+		// common.ErrorLogging(shellError)
 	}
 }
