@@ -50,7 +50,7 @@ func WriteCSVFile(fileName string, logText []string, fileAuth int) {
 */
 func WriteFile(fileName string, fileByte []byte, fileAuth int, extension string) {
 	fileNameSpit := strings.Split(fileName, "/")
-	filePath := strings.Join(fileNameSpit[0:len(fileNameSpit)-1], "/") 
+	filePath := strings.Join(fileNameSpit[0:len(fileNameSpit)-1], "/")
 	log.Println(filePath)
 	err := os.MkdirAll(filePath, os.FileMode(fileAuth))
 
@@ -66,4 +66,17 @@ func WriteFile(fileName string, fileByte []byte, fileAuth int, extension string)
 	defer file.Close()
 
 	file.Write(fileByte)
+}
+
+func RemoveFile(fileName string) {
+	err := os.Remove(fileName)
+	common.ErrorLogging(err)
+}
+
+func GetFile(fileName string) []byte {
+	file, err := os.ReadFile(fileName)
+	if common.ErrorLogging(err) {
+		return nil
+	}
+	return file
 }
