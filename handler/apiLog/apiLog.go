@@ -21,8 +21,11 @@ func (apiLogData *ApiLogData) Execute() {
 	common.CheckErr(err)
 
 	now := time.Now().In(loc)
-
-	filName := commonConstant.GetLogDirByEnv(commonConstant.GetEnvironment()) + "/api/" + now.Format("2006-01-02")
+	fileOriginName := apiLogData.ServerType + "_" + apiLogData.User + "_" +
+		now.Format("2006-01-02")
+	filName := commonConstant.GetLogDirByEnv(commonConstant.GetEnvironment()) +
+		"/api/" +
+		fileOriginName
 
 	if !file.FileExistCheck(filName, commonConstant.FILE_EXTENSION.CSV) {
 		file.WriteCSVFile(filName, []string{
@@ -51,7 +54,8 @@ func (apiLogData *ApiLogData) Execute() {
 		log.Println("s3 upload api logging")
 		awsModule.UploadS3(
 			os.Getenv("LOGGING_BUCKET"),
-			"logging/api/"+now.Format("2006-01-02")+
+			"logging/api/"+
+				fileOriginName+
 				commonConstant.FILE_EXTENSION.CSV,
 			string(fileBody),
 			"multipart/formed-data",
