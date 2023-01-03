@@ -53,6 +53,6 @@ func (apiLogData *ApiLogData) Execute() {
 			string(fileBody),
 			commonConstant.FILE_EXTENSION.CSV,
 		)
-		file.RemoveFile(filName, commonConstant.FILE_EXTENSION.CSV)
+		// file.RemoveFile(filName, commonConstant.FILE_EXTENSION.CSV)
 	}
 }
