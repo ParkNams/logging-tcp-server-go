@@ -52,6 +52,7 @@ func (apiLogData *ApiLogData) Execute() {
 
 	if fileBody != nil {
 		log.Println("s3 upload api logging")
+		log.Println(os.Getenv("LOGGING_BUCKET"))
 		_, err := awsModule.UploadS3(
 			os.Getenv("LOGGING_BUCKET"),
 			"logging/api/"+
