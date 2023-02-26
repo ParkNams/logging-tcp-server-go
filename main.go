@@ -21,7 +21,7 @@ func main() {
 	l := tcp.GetListener(common.METHOD, common.GetPort())
 
 	defer l.Close()
-	defer log.Println("process exit!!")
+	defer log.Println("process exit!!!!")
 
 	go func() {
 		for !END_FLAG {
