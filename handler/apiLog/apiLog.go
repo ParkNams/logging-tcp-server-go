@@ -52,7 +52,7 @@ func (apiLogData *ApiLogData) Execute() {
 
 	if fileBody != nil {
 		log.Println("s3 upload api logging")
-		awsModule.UploadS3(
+		_, err := awsModule.UploadS3(
 			os.Getenv("LOGGING_BUCKET"),
 			"logging/api/"+
 				fileOriginName+
@@ -60,6 +60,9 @@ func (apiLogData *ApiLogData) Execute() {
 			string(fileBody),
 			"multipart/formed-data",
 		)
+		if err != nil {
+			log.Println(err)
+		}
 		// file.RemoveFile(filName, commonConstant.FILE_EXTENSION.CSV)
 	}
 }
