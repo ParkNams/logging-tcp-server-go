@@ -31,9 +31,6 @@ type FileFlags struct {
 	C_SYNC     int
 }
 
-var (
-	_ = godotenv.Load()
-)
 
 const (
 	// 서버 연결 방식
@@ -41,6 +38,18 @@ const (
 )
 
 var (
+	_ = godotenv.Load()
+)
+
+
+var (
+	SAVE_MODE_UNITS = map[string]string{
+		"AWS": "aws",
+		"LOCAL": "local",
+	}
+	// 로그 저장 방식 
+	SAVE_MODE = SAVE_MODE_UNITS["AWS"]
+
 	// 프로그램 프로토콜
 	PROTOCOL = Protocol{
 		// logging

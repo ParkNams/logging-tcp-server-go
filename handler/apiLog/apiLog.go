@@ -36,7 +36,7 @@ func (apiLogData *ApiLogData) Execute() {
 			"Header",
 			"Error",
 			"ServerType",
-		}, 0777)
+		}, 0755)
 	}
 	file.WriteCSVFile(filName, []string{
 		now.Format("2006-01-02T15:04:05"),
@@ -46,24 +46,33 @@ func (apiLogData *ApiLogData) Execute() {
 		apiLogData.Header,
 		apiLogData.Error,
 		apiLogData.ServerType,
-	}, 0777)
+	}, 0755)
 
 	fileBody := file.GetFile(filName, commonConstant.FILE_EXTENSION.CSV)
 
 	if fileBody != nil {
-		log.Println("s3 upload api logging")
-		log.Println(os.Getenv("LOGGING_BUCKET"))
-		_, err := awsModule.UploadS3(
-			os.Getenv("LOGGING_BUCKET"),
-			"logging/api/"+
-				fileOriginName+
-				commonConstant.FILE_EXTENSION.CSV,
-			string(fileBody),
-			"multipart/formed-data",
-		)
-		if err != nil {
-			log.Println(err)
+
+		switch (commonConstant.SAVE_MODE) {
+		case commonConstant.SAVE_MODE_UNITS["AWS"]: {
+			_, err := awsModule.UploadS3(
+				os.Getenv("LOGGING_BUCKET"),
+				"logging/api/"+
+					fileOriginName+
+					commonConstant.FILE_EXTENSION.CSV,
+				string(fileBody),
+				"multipart/formed-data",
+			)
+			if err != nil {
+				log.Println(err)
+			}
 		}
-		// file.RemoveFile(filName, commonConstant.FILE_EXTENSION.CSV)
+		case commonConstant.SAVE_MODE_UNITS["LOCAL"]: {
+		}
+		default: {
+			
+		}
+		}
+
+
 	}
 }
